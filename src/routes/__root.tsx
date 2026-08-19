@@ -88,7 +88,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Academic capstone seeking a multi-site company as the subject of the study. Modeled in EVE-NG. We never touch your live network.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://umak-ccis-capstone.vercel.app/" },
+      { property: "og:site_name", content: "UMak CCIS Capstone" },
+      { property: "og:locale", content: "en_PH" },
+      {
+        property: "og:image",
+        content: "https://umak-ccis-capstone.vercel.app/og.png",
+      },
+      {
+        property: "og:image:secure_url",
+        content: "https://umak-ccis-capstone.vercel.app/og.png",
+      },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Calling for an industry partner — UMak CCIS Capstone 1",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:image",
+        content: "https://umak-ccis-capstone.vercel.app/og.png",
+      },
+      {
+        name: "twitter:title",
+        content: "UMak CCIS Capstone — Calling for an Industry Partner",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Academic capstone seeking a multi-site company as the subject of the study. Modeled in EVE-NG. We never touch your live network.",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -101,6 +132,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "canonical", href: "https://umak-ccis-capstone.vercel.app/" },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],

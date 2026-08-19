@@ -18,7 +18,22 @@ export const Route = createFileRoute("/")({
           "Academic capstone seeking a multi-site company as the subject of the study. Modeled in EVE-NG. We never touch your live network.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://umak-ccis-capstone.vercel.app/" },
+      {
+        property: "og:image",
+        content: "https://umak-ccis-capstone.vercel.app/og.png",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Calling for an industry partner — UMak CCIS Capstone 1",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:image",
+        content: "https://umak-ccis-capstone.vercel.app/og.png",
+      },
     ],
   }),
   component: Index,
