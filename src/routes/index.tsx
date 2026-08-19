@@ -73,7 +73,7 @@ function PartnerForm() {
         <p className="font-display text-2xl font-bold leading-snug tracking-tight">
           Received.
           <br />
-          <span className="text-ink-soft">We&rsquo;ll reply with a one-page note.</span>
+          <span className="text-ink-soft">We&rsquo;ll email you a short briefing you can forward.</span>
         </p>
       </div>
     );
