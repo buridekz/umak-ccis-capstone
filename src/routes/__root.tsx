@@ -90,13 +90,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://umak-ccis-capstone.vercel.app/" },
       { property: "og:site_name", content: "UMak CCIS Capstone" },
-      { property: "og:locale", content: "en_PH" },
+      { property: "og:locale", content: "en_US" },
       {
         property: "og:image",
-        content: "https://umak-ccis-capstone.vercel.app/og.png",
-      },
-      {
-        property: "og:image:secure_url",
         content: "https://umak-ccis-capstone.vercel.app/og.png",
       },
       { property: "og:image:type", content: "image/png" },
@@ -145,7 +141,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" prefix="og: https://ogp.me/ns#">
       <head>
         <HeadContent />
       </head>
