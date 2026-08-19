@@ -10,6 +10,7 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { SmoothScroll } from "../components/smooth-scroll";
 
 function NotFoundComponent() {
   return (
@@ -77,14 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "BSIT Information and Network Security capstone at University of Makati is looking for a multi-site organization as industry context.",
+          "BSIT Information and Network Security capstone at University of Makati is looking for a multi-site company as the subject of the study.",
       },
       { name: "author", content: "University of Makati · CCIS" },
       { property: "og:title", content: "UMak CCIS Capstone — Calling for an Industry Partner" },
       {
         property: "og:description",
         content:
-          "Academic capstone seeking a multi-site organization as industry context. Modeled in EVE-NG — we never touch your live network.",
+          "Academic capstone seeking a multi-site company as the subject of the study. Modeled in EVE-NG. We never touch your live network.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -129,8 +130,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SmoothScroll>
+        <Outlet />
+      </SmoothScroll>
     </QueryClientProvider>
   );
 }

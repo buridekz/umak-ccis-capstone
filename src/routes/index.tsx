@@ -9,13 +9,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "BSIT Information and Network Security capstone at University of Makati is looking for a multi-site organization as industry context. Simulated in EVE-NG. No production access, no fee.",
+          "BSIT Information and Network Security capstone at University of Makati is looking for a multi-site company as the subject of the study. Data gathering from conversations, not from your network. Simulated in EVE-NG. No fee.",
       },
       { property: "og:title", content: "UMak CCIS Capstone — Calling for an Industry Partner" },
       {
         property: "og:description",
         content:
-          "Academic capstone seeking a multi-site organization as industry context. Modeled in EVE-NG — we never touch your live network.",
+          "Academic capstone seeking a multi-site company as the subject of the study. Modeled in EVE-NG. We never touch your live network.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,7 +42,7 @@ const WHO: Array<{ k: string; v: string }> = [
   },
   {
     k: "You get",
-    v: "A student team modeling your kind of network in EVE-NG, a later demo if you want it, and your name on the paper only if you allow it.",
+    v: "Your organization as the subject of the study. We gather from conversations you approve, model that kind of network in EVE-NG, and put your name on the paper only if you allow it.",
   },
   {
     k: "We will not",
@@ -52,13 +52,10 @@ const WHO: Array<{ k: string; v: string }> = [
 
 function Nav() {
   return (
-    <nav className="site-nav grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 sm:py-5">
-      <span className="min-w-0 font-display text-lg font-extrabold tracking-tight text-ink sm:text-xl">
+    <nav className="site-nav px-5 py-4 sm:px-8 sm:py-5">
+      <span className="font-display text-lg font-extrabold tracking-tight text-ink sm:text-xl">
         UMak CCIS <span className="text-ink-soft">· Capstone 1</span>
       </span>
-      <a href="#contact" className="press shrink-0 rounded-full bg-ink px-6 py-3 text-[0.68rem] font-semibold tracking-[0.12em] text-canvas">
-        REQUEST A 15-MIN CONVERSATION
-      </a>
     </nav>
   );
 }
@@ -233,20 +230,17 @@ function Index() {
 
         <div className="billboard bento-frame">
           <section className="hero-billboard bento">
-            <div className="hero-copy">
-              <p className="text-[0.72rem] font-semibold tracking-[0.16em] text-ink-soft">
-                UNIVERSITY OF MAKATI · CCIS · BSIT — INFORMATION AND NETWORK SECURITY
-              </p>
-              <h1 className="hero-title max-w-[18ch] font-display font-extrabold leading-[0.9] tracking-[-0.04em]">
-                Calling for an industry partner
-              </h1>
-              <p className="hero-lede max-w-[56ch] leading-relaxed text-ink-soft">
-                Capstone Project and Research 1. Academic project. Not a vendor. No fee. We are looking
-                for an organization with more than one site as the industry context for a network and
-                infrastructure capstone. Simulated in EVE-NG.{" "}
-                <span className="font-semibold text-ink">We do not touch your live network.</span>
-              </p>
-            </div>
+            <h1 className="hero-title">
+              <span>Calling for an</span>
+              <span>industry partner</span>
+            </h1>
+            <p className="hero-lede">
+              Capstone Project and Research 1. Academic project. Not a paid engagement. We need a
+              company with more than one site as the subject of the study. Data gathering is short
+              conversations and what you allow us to describe, not a pull from your systems.
+              Simulated in EVE-NG.{" "}
+              <span className="font-semibold text-ink">We do not touch your live network.</span>
+            </p>
             <div className="hero-actions">
               <a href="#contact" className="press cta-gradient rounded-full px-9 py-5 font-display text-lg font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
                 Request a 15-min conversation
