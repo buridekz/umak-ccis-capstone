@@ -239,6 +239,78 @@ textarea.field {
   border-radius: 1.25rem;
 }
 
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.35rem) 50%,
+    calc(100% - 1.1rem) 50%;
+  background-repeat: no-repeat;
+  background-size: 0.28rem 0.28rem;
+  padding-right: 2.4rem;
+}
+
+.survey-pane {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.survey-pane::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.survey-q {
+  margin-top: 2.75rem;
+  padding-top: 2.75rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 14%, transparent);
+}
+
+.survey-q:first-of-type {
+  margin-top: 2.25rem;
+}
+
+.survey-q .other-field {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 380ms var(--ease-out-expo),
+    opacity 280ms var(--ease-out);
+}
+
+.survey-q .other-field-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 6px 4px;
+}
+
+.survey-q .other-field .field {
+  border-color: var(--ink);
+}
+
+.survey-q .other-field .field:hover,
+.survey-q .other-field .field:focus-visible {
+  border-color: var(--ink);
+}
+
+.survey-q .other-field .field:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.survey-q:has(input[value="Other"]:checked) .other-field {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .survey-q .other-field {
+    transition: none;
+  }
+}
+
 .never-marquee {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);

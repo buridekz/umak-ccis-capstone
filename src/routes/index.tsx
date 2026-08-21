@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { Link, createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Mail, Phone } from "lucide-react";
 
@@ -65,7 +65,7 @@ function PartnerForm() {
         <p className="font-display text-2xl font-bold leading-snug tracking-tight">
           Received.
           <br />
-          <span className="text-ink-soft">We&rsquo;ll email you a short briefing you can forward.</span>
+          <span className="text-ink-soft">We’ll email you a short briefing you can forward.</span>
         </p>
       </div>
     );
@@ -352,6 +352,12 @@ function Index() {
               </li>
             ))}
           </ul>
+          <Link
+            to="/gather"
+            className="mt-10 inline-block text-[0.95rem] font-medium text-ink-soft underline-offset-4 transition-colors duration-200 ease-out hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          >
+            Or five category questions, about 5 minutes
+          </Link>
         </div>
 
         <div className="border-t border-ink/15 pt-10 lg:border-l lg:border-t-0 lg:pl-16 lg:pt-0">
