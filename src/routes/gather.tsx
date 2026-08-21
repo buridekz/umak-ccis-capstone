@@ -74,6 +74,7 @@ function GatherForm() {
   if (sent) {
     return (
       <SurveySaved
+        kind="screening"
         remote={remote}
         onAgain={() => setSent(false)}
         next={{ to: "/confirm", label: "Confirm lab bounds" }}

@@ -44,15 +44,21 @@ function recordHtml(row: SurveyRecord) {
   `;
 }
 
-export function viewSurveysPdf() {
-  const records = loadSurveys();
+export function viewSurveysPdf(kind: SurveyRecord["kind"]) {
+  const records = loadSurveys().filter((row) => row.kind === kind);
   if (records.length === 0) return;
+
+  const heading = kind === "screening" ? "Five questions" : "Lab confirmation";
+  const lede =
+    kind === "screening"
+      ? "Screening. Categories only. Academic use. Organization named on the paper only if authorized."
+      : "Lab confirmation. What we may model in a fake network on our machines. Not a copy of a live design.";
 
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>UMak CCIS Capstone — data gathering</title>
+  <title>UMak CCIS Capstone — ${heading}</title>
   <style>
     :root { color-scheme: light; }
     * { box-sizing: border-box; }
@@ -112,7 +118,7 @@ export function viewSurveysPdf() {
 </head>
 <body>
   <h1>UMak CCIS Capstone 1</h1>
-  <p class="lede">Data gathering. Categories only. Academic use. Organization named on the paper only if authorized.</p>
+  <p class="lede">${esc(lede)}</p>
   <p class="hint">To save a PDF: Print this page → Save as PDF. Then close the tab.</p>
   ${records.map(recordHtml).join("")}
   <script>window.addEventListener("load", () => setTimeout(() => window.print(), 250));</script>

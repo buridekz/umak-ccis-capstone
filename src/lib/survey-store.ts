@@ -44,14 +44,17 @@ export function deleteSurvey(id: string) {
   localStorage.setItem(KEY, JSON.stringify(next));
 }
 
-export function downloadSurveys() {
-  const blob = new Blob([JSON.stringify(loadSurveys(), null, 2)], {
+export function downloadSurveys(kind?: SurveyRecord["kind"]) {
+  const rows = kind ? loadSurveys().filter((row) => row.kind === kind) : loadSurveys();
+  const blob = new Blob([JSON.stringify(rows, null, 2)], {
     type: "application/json",
   });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
+  const stamp = new Date().toISOString().slice(0, 10);
+  const slug = kind === "screening" ? "screening" : kind === "confirmation" ? "lab-confirm" : "surveys";
   a.href = url;
-  a.download = `capstone-surveys-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `capstone-${slug}-${stamp}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }

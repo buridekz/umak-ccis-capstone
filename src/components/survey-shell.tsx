@@ -187,21 +187,24 @@ function whenLocal(iso: string) {
 }
 
 export function SurveySaved({
+  kind,
   remote,
   next,
   onAgain,
 }: {
+  kind: SurveyRecord["kind"];
   remote: boolean;
   next?: { to: "/" | "/gather" | "/confirm"; label: string };
   onAgain?: () => void;
 }) {
-  const [records, setRecords] = useState(() => loadSurveys());
+  const [all, setAll] = useState(() => loadSurveys());
+  const records = all.filter((row) => row.kind === kind);
   const latest = records[records.length - 1];
   const rows = [...records].reverse();
 
   function remove(id: string) {
     deleteSurvey(id);
-    setRecords(loadSurveys());
+    setAll(loadSurveys());
   }
 
   return (
@@ -214,20 +217,21 @@ export function SurveySaved({
           <p className="mt-2 max-w-[42ch] text-[0.95rem] leading-snug text-ink-soft">
             {remote
               ? "Saved here, and sent to Formspree."
-              : "Saved here only. No network to Formspree."}
+              : "Saved here only. No network to Formspree."}{" "}
+            {kind === "screening" ? "This PDF is the five questions only." : "This PDF is the lab confirmation only."}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
-            onClick={viewSurveysPdf}
+            onClick={() => viewSurveysPdf(kind)}
             className="press cta-gradient rounded-full px-6 py-3 font-display text-sm font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             View / save PDF
           </button>
           <button
             type="button"
-            onClick={downloadSurveys}
+            onClick={() => downloadSurveys(kind)}
             className="press-fill rounded-full border border-ink/70 px-6 py-3 font-display text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
             JSON
@@ -261,7 +265,7 @@ export function SurveySaved({
 
       <section className="mt-10 flex min-h-0 flex-1 flex-col border-t border-ink/15 pt-8">
         <h3 className="font-display text-lg font-bold tracking-tight">
-          All saved ({records.length})
+          This form ({records.length})
         </h3>
         <ul className="mt-4 min-h-0 flex-1 overflow-y-auto">
           {rows.map((row) => (
