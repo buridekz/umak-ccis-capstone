@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowLeft } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
 
 import { deleteSurvey, downloadSurveys, loadSurveys, type SurveyRecord } from "../lib/survey-store";
@@ -51,6 +52,13 @@ export function SurveyShell({
           </ul>
         </aside>
         <section className="survey-pane bento flex min-h-0 flex-col overflow-y-auto px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+          <Link
+            to="/"
+            className="mb-8 inline-flex w-fit items-center gap-2 font-display text-sm font-semibold text-ink underline-offset-4 transition-colors duration-200 ease-out hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          >
+            <ArrowLeft className="size-4" aria-hidden />
+            Back
+          </Link>
           {children}
         </section>
       </div>
