@@ -45,7 +45,8 @@ export function deleteSurvey(id: string) {
 }
 
 export function downloadSurveys(kind?: SurveyRecord["kind"]) {
-  const rows = kind ? loadSurveys().filter((row) => row.kind === kind) : loadSurveys();
+  const ofKind = kind ? loadSurveys().filter((row) => row.kind === kind) : loadSurveys();
+  const rows = ofKind.length ? [ofKind[ofKind.length - 1]] : [];
   const blob = new Blob([JSON.stringify(rows, null, 2)], {
     type: "application/json",
   });

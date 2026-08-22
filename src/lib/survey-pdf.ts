@@ -70,8 +70,10 @@ function recordHtml(row: SurveyRecord) {
 }
 
 export function viewSurveysPdf(kind: SurveyRecord["kind"]) {
-  const records = loadSurveys().filter((row) => row.kind === kind);
-  if (records.length === 0) return;
+  const ofKind = loadSurveys().filter((row) => row.kind === kind);
+  const latest = ofKind[ofKind.length - 1];
+  if (!latest) return;
+  const records = [latest];
 
   const heading = kind === "screening" ? "Five Questions Screening Summary" : "Lab Confirmation Summary";
   const lede =
