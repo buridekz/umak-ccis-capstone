@@ -1,6 +1,31 @@
-import { loadSurveys, type SurveyRecord } from "./survey-store";
+﻿import { loadSurveys, type SurveyRecord } from "./survey-store";
 
 const HIDDEN = new Set(["_subject", "_gotcha"]);
+
+const FIELD_LABELS: Record<string, string> = {
+  path: "Path to Remote Sites",
+  fault: "Primary Recurring Fault",
+  failover: "Current Failover Process",
+  detection: "Incident Detection Method",
+  never_auto: "Prohibited Automated Actions",
+  attribution: "Research Attribution",
+  notes: "Operational Notes / Scenarios",
+  scale: "Infrastructure Scale",
+  frequency: "Fault Frequency",
+  recovery: "Current Recovery Workflow",
+  allowed_auto: "Approved Automated Actions",
+  never_lab: "Strictly Prohibited in Lab",
+  path_other: "Other Path Details",
+  fault_other: "Other Fault Details",
+  failover_other: "Other Failover Details",
+  detection_other: "Other Detection Details",
+  never_auto_other: "Other Prohibited Actions",
+  scale_other: "Other Scale Details",
+  frequency_other: "Other Frequency Details",
+  recovery_other: "Other Recovery Details",
+  allowed_auto_other: "Other Approved Actions",
+  never_lab_other: "Other Prohibited Actions",
+};
 
 function esc(value: string) {
   return value
@@ -11,7 +36,7 @@ function esc(value: string) {
 }
 
 function kindLabel(kind: SurveyRecord["kind"]) {
-  return kind === "screening" ? "Screening" : "Lab confirmation";
+  return kind === "screening" ? "Screening Assessment" : "Lab Bounds Confirmation";
 }
 
 function whenLocal(iso: string) {
@@ -29,14 +54,14 @@ function recordHtml(row: SurveyRecord) {
   const rest = fields.filter(([key]) => !identity.includes(key as (typeof identity)[number]));
   return `
     <article class="record">
-      <h2>${esc(row.fields.name || "Untitled")}</h2>
+      <h2>${esc(row.fields.name || "Participant")}</h2>
       <p class="meta">${esc(kindLabel(row.kind))} · ${esc(whenLocal(row.at))}</p>
       <p class="meta">${esc([row.fields.role, row.fields.organization, row.fields.email].filter(Boolean).join(" · "))}</p>
       <dl>
         ${rest
           .map(
             ([key, value]) =>
-              `<div><dt>${esc(key)}</dt><dd>${esc(value)}</dd></div>`,
+              `<div><dt>${esc(FIELD_LABELS[key] || key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()))}</dt><dd>${esc(value)}</dd></div>`,
           )
           .join("")}
       </dl>
@@ -48,11 +73,11 @@ export function viewSurveysPdf(kind: SurveyRecord["kind"]) {
   const records = loadSurveys().filter((row) => row.kind === kind);
   if (records.length === 0) return;
 
-  const heading = kind === "screening" ? "Five questions" : "Lab confirmation";
+  const heading = kind === "screening" ? "Five Questions Screening Summary" : "Lab Confirmation Summary";
   const lede =
     kind === "screening"
-      ? "Screening. Categories only. Academic use. Organization named on the paper only if authorized."
-      : "Lab confirmation. What we may model in a fake network on our machines. Not a copy of a live design.";
+      ? "Operational screening assessment. Categories only. Academic use. Organization named on the paper only if authorized."
+      : "Lab bounds confirmation. Simulated testbed parameters in EVE-NG. Not a copy of a live design.";
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -78,7 +103,7 @@ export function viewSurveysPdf(kind: SurveyRecord["kind"]) {
     }
     .lede {
       margin: 0.85rem 0 0;
-      max-width: 42ch;
+      max-width: 44ch;
       color: #5a5a5a;
       line-height: 1.45;
     }
@@ -103,12 +128,12 @@ export function viewSurveysPdf(kind: SurveyRecord["kind"]) {
     dl { margin: 1rem 0 0; }
     dl div {
       display: grid;
-      grid-template-columns: 10rem 1fr;
+      grid-template-columns: 14rem 1fr;
       gap: 0.75rem;
       padding: 0.55rem 0;
       border-top: 1px solid #e6e4e0;
     }
-    dt { color: #5a5a5a; font-size: 0.85rem; }
+    dt { color: #5a5a5a; font-size: 0.85rem; font-weight: 600; }
     dd { margin: 0; }
     @media print {
       body { background: white; padding: 0; }

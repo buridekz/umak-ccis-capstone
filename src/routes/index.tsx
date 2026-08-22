@@ -252,7 +252,10 @@ function Index() {
 
       <div className="bento-frame bento-cards mx-3 mb-3 sm:mx-5 sm:mb-5">
         <div className="grid gap-[5px] lg:grid-cols-3">
-          <article id="idea" className="bento flex min-h-[560px] flex-col justify-between p-10">
+          <Link
+            to="/idea"
+            className="press bento group flex min-h-[560px] flex-col justify-between p-10 text-ink transition-colors duration-200 ease-out hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          >
             <div>
               <p className="text-[0.72rem] font-semibold tracking-[0.16em] text-ink-soft">
                 STARTING IDEA
@@ -262,12 +265,21 @@ function Index() {
                 catalog, and still has a human kill switch.
               </h2>
             </div>
-            <p className="mt-8 text-base leading-relaxed text-ink-soft">
-              If it is not useful, tell us — we reshape it from what you are allowed to share.
-              Networking and infrastructure only.{" "}
-              <span className="font-semibold text-ink">We do not touch production.</span>
-            </p>
-          </article>
+            <div className="mt-10">
+              <p className="text-base leading-relaxed text-ink-soft">
+                If it is not useful, tell us — we reshape it from what you are allowed to share.
+                Networking and infrastructure only.{" "}
+                <span className="font-semibold text-ink">We do not touch production.</span>
+              </p>
+              <p className="mt-8 flex items-center gap-2 border-t border-ink/15 pt-6 font-display text-sm font-semibold text-ink underline-offset-4 group-hover:underline">
+                Read the overview
+                <ArrowRight
+                  className="size-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </p>
+            </div>
+          </Link>
 
           <article
             id="who"

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConfirmRouteImport } from './routes/confirm'
 import { Route as GatherRouteImport } from './routes/gather'
+import { Route as IdeaRouteImport } from './routes/idea'
 import { Route as LetterRouteImport } from './routes/letter'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const GatherRoute = GatherRouteImport.update({
   path: '/gather',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IdeaRoute = IdeaRouteImport.update({
+  id: '/idea',
+  path: '/idea',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LetterRoute = LetterRouteImport.update({
   id: '/letter',
   path: '/letter',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/confirm': typeof ConfirmRoute
   '/gather': typeof GatherRoute
+  '/idea': typeof IdeaRoute
   '/letter': typeof LetterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/confirm': typeof ConfirmRoute
   '/gather': typeof GatherRoute
+  '/idea': typeof IdeaRoute
   '/letter': typeof LetterRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/confirm': typeof ConfirmRoute
   '/gather': typeof GatherRoute
+  '/idea': typeof IdeaRoute
   '/letter': typeof LetterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/confirm' | '/gather' | '/letter'
+  fullPaths: '/' | '/confirm' | '/gather' | '/idea' | '/letter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/confirm' | '/gather' | '/letter'
-  id: '__root__' | '/' | '/confirm' | '/gather' | '/letter'
+  to: '/' | '/confirm' | '/gather' | '/idea' | '/letter'
+  id: '__root__' | '/' | '/confirm' | '/gather' | '/idea' | '/letter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConfirmRoute: typeof ConfirmRoute
   GatherRoute: typeof GatherRoute
+  IdeaRoute: typeof IdeaRoute
   LetterRoute: typeof LetterRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GatherRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/idea': {
+      id: '/idea'
+      path: '/idea'
+      fullPath: '/idea'
+      preLoaderRoute: typeof IdeaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/letter': {
       id: '/letter'
       path: '/letter'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConfirmRoute: ConfirmRoute,
   GatherRoute: GatherRoute,
+  IdeaRoute: IdeaRoute,
   LetterRoute: LetterRoute,
 }
 export const routeTree = rootRouteImport
